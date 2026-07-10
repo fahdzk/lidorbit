@@ -44,6 +44,11 @@ This document stores the complete development history, configuration, and archit
    * Wrote JSON-LD Schema (FAQ and Article markup) for Google crawl bots.
    * Integrated internal link network connecting all pages, footers, and homepages.
 
+7. **macOS Build & Actions Pipeline**:
+   * Configured a GitHub Actions workflow `.github/workflows/build.yml` executing on both `macos-latest` and `windows-latest` runners.
+   * Compiles the desktop app natively for macOS (generating `LIDORBIT-1.0.0-arm64.dmg`) and Windows (generating `LIDORBIT.Setup.1.0.0.exe`), automatically uploading them to GitHub Releases.
+   * Replaced Mac App Store links with direct download links pointing to the compiled `LIDORBIT-1.0.0-arm64.dmg` release asset.
+
 ---
 
 ## 🛠 Technology Stack & Component Architecture
