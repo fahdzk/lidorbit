@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (window.location.hostname === 'lidorbit.wasmer.app' || window.location.hostname === 'lidorbit.com') {
+      window.location.replace('https://www.lidorbit.com' + window.location.pathname + window.location.search);
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Keep-Awake Apps for Mac & Windows in 2026 (For AI Engineers)</title>
+  <meta name="description" content="Looking for the best keep-awake or anti-sleep app for Mac or Windows? See our comparison of LidOrbit, Amphetamine, Caffeinated, and more." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .seo-page {
+      padding-top: 140px;
+      padding-bottom: 80px;
+    }
+    .seo-content {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .seo-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--purple-glow) 70%, var(--cyan-accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .seo-content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 48px;
+      margin-bottom: 20px;
+      color: var(--purple-glow);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+      padding-bottom: 8px;
+    }
+    .seo-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .seo-content p {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .seo-content ul, .seo-content ol {
+      margin-left: 24px;
+      margin-bottom: 24px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+    .app-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      padding: 28px;
+      border-radius: 16px;
+      margin: 28px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .app-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 12px;
+    }
+    .app-rank-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .app-rank {
+      background: var(--purple-bright);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .app-meta-badge {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.8rem;
+      color: var(--cyan-accent);
+      background: rgba(0, 229, 255, 0.1);
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+    .app-details-list {
+      list-style: none !important;
+      margin: 0 0 16px 0 !important;
+      font-size: 0.95rem;
+    }
+    .app-details-list li {
+      margin-bottom: 4px;
+    }
+    .app-details-list strong {
+      color: #fff;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    table.comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    table.comparison-table th, table.comparison-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    table.comparison-table th {
+      background: rgba(139, 92, 246, 0.1);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    table.comparison-table td {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+    table.comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+    .pick-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(0, 229, 255, 0.04) 100%);
+      border: 2px solid var(--purple-bright);
+      padding: 32px;
+      border-radius: 20px;
+      margin: 40px 0;
+      position: relative;
+    }
+    .pick-badge {
+      position: absolute;
+      top: -14px;
+      left: 32px;
+      background: var(--purple-bright);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pick-box h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .seo-cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 32px 0 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      text-align: center;
+    }
+    .seo-cta-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .seo-cta-sub {
+      color: var(--text-dim);
+      font-size: 1rem;
+      margin-bottom: 24px;
+      max-width: 500px;
+    }
+    .seo-nav-links {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .seo-nav-links a {
+      color: var(--purple-glow);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .seo-nav-links a:hover {
+      color: var(--cyan-accent);
+      text-decoration: underline;
+    }
+  </style>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Keep-Awake Apps for Mac & Windows in 2026 (For AI Engineers)",
+    "description": "Compare the top anti-sleep and keep-awake applications for Mac and Windows. Features, platforms, prices, and specs analyzed.",
+    "author": {
+      "@type": "Organization",
+      "name": "LidOrbit"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.lidorbit.com/best-keep-awake-app-2026.html"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <div class="matrix-bg"></div>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <nav>
+      <div class="logo"><a href="/" style="color: inherit; text-decoration: none;">Lid<span>Orbit</span></a></div>
+      <ul>
+        <li><a href="/#proof">Demo</a></li>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#in-action">In Action</a></li>
+        <li><a href="/#why">Why It Matters</a></li>
+        <li><a href="/#origin">Origin</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="/login.html" id="nav-login-btn" class="nav-login-link">
+          <svg class="nav-login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 6px;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="nav-login-text">Sign In</span>
+        </a>
+        <a href="/purchase.html" class="nav-cta">Buy License</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container seo-page">
+    <article class="seo-content">
+      <h1>Best Keep-Awake Apps for Mac & Windows in 2026 (For AI Engineers)</h1>
+      
+      <p>The rise of autonomous coding agents, continuous terminal scripts, and local LLM execution has turned the "keep awake" software category from a niche desktop utility into a mission-critical tool for developers. If you are deploying an agent to run an overnight coding run, system sleep means complete process failure.</p>
+      
+      <p>To keep your loops executing, you need an anti-sleep application that is reliable, secure, and works seamlessly when you close your laptop lid. Here is our ranked round-up of the best keep-awake applications for Mac and Windows in 2026.</p>
+
+      <h2>The Ranked List</h2>
+
+      <!-- App 1 -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-rank-title">
+            <div class="app-rank">1</div>
+            <div class="app-title">LidOrbit</div>
+          </div>
+          <span class="app-meta-badge">Recommended</span>
+        </div>
+        <ul class="app-details-list">
+          <li><strong>Price:</strong> One-time $5.99 lifetime unlock</li>
+          <li><strong>Platforms:</strong> macOS + Windows (10/11)</li>
+          <li><strong>Best For:</strong> AI Engineers, Terminal automation, and long script runs</li>
+        </ul>
+        <p>LidOrbit is the first anti-sleep utility built specifically for modern, resource-heavy developer workflows. It lets you close your laptop lid and keep code executing safely. Unlike legacy options, LidOrbit features active thermal monitoring to release block overrides if your system gets too hot, along with battery drain warnings.</p>
+        <p><em>Limitations: Requires a one-time paid license ($5.99).</em></p>
+      </div>
+
+      <!-- App 2 -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-rank-title">
+            <div class="app-rank">2</div>
+            <div class="app-title">Amphetamine</div>
+          </div>
+          <span class="app-meta-badge">Free / Mac</span>
+        </div>
+        <ul class="app-details-list">
+          <li><strong>Price:</strong> Free</li>
+          <li><strong>Platforms:</strong> macOS only</li>
+          <li><strong>Best For:</strong> Mac power users looking for complex schedule blocks</li>
+        </ul>
+        <p>Amphetamine is the most customisable free tool on macOS. It sits in the menu bar and blocks display sleep based on active processes, network configurations, or simple timers. It is highly reliable but has major caveats for developers.</p>
+        <p><em>Limitations: Requires downloading a separate helper application (Amphetamine Enhancer) to bypass closed-lid sleep, lacks thermal safety limits, and doesn't run on Windows.</em></p>
+      </div>
+
+      <!-- App 3 -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-rank-title">
+            <div class="app-rank">3</div>
+            <div class="app-title">Caffeinated</div>
+          </div>
+          <span class="app-meta-badge">Paid / Mac</span>
+        </div>
+        <ul class="app-details-list">
+          <li><strong>Price:</strong> $2.99</li>
+          <li><strong>Platforms:</strong> macOS only</li>
+          <li><strong>Best For:</strong> Users who want a clean, simple menu bar clicker</li>
+        </ul>
+        <p>Caffeinated is a beautiful, modern wrapper for macOS's legacy `caffeinate` API. It features a simple coffee cup icon in the menu bar that fills up as you toggle keep-awake times. It is simple, bug-free, and gets the basic job done.</p>
+        <p><em>Limitations: Mac-only, lacks thermal/battery safety alerts, and cannot override clamshell lid sleep natively without external power + display.</em></p>
+      </div>
+
+      <!-- App 4 -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-rank-title">
+            <div class="app-rank">4</div>
+            <div class="app-title">KeepingYouAwake</div>
+          </div>
+          <span class="app-meta-badge">Open Source</span>
+        </div>
+        <ul class="app-details-list">
+          <li><strong>Price:</strong> Free (Open Source)</li>
+          <li><strong>Platforms:</strong> macOS only</li>
+          <li><strong>Best For:</strong> Open-source purists</li>
+        </ul>
+        <p>KeepingYouAwake is a classic menu bar clone of Caffeine, built natively in Swift. It is completely open-source, lightweight, and blocks screen-saver triggers reliably.</p>
+        <p><em>Limitations: No lid-closed support, Mac-only, and lacks advanced battery/thermal guards.</em></p>
+      </div>
+
+      <!-- App 5 -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-rank-title">
+            <div class="app-rank">5</div>
+            <div class="app-title">PowerToys Awake</div>
+          </div>
+          <span class="app-meta-badge">Windows Built-in</span>
+        </div>
+        <ul class="app-details-list">
+          <li><strong>Price:</strong> Free</li>
+          <li><strong>Platforms:</strong> Windows only</li>
+          <li><strong>Best For:</strong> Windows-only sysadmins</li>
+        </ul>
+        <p>PowerToys Awake is a module inside Microsoft's official PowerToys power utility set. It allows Windows users to keep their machines awake directly from the system tray, blocking sleep based on custom templates or active downloads.</p>
+        <p><em>Limitations: Windows-only, requires the entire PowerToys suite installed, and does not provide active battery warning sound alerts when the charger is unplugged.</em></p>
+      </div>
+
+      <h2>Quick Summary Table</h2>
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Price</th>
+              <th>Platforms</th>
+              <th>Best For</th>
+              <th>Thermal Safety Guard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>LidOrbit</strong></td>
+              <td>$5.99 (Lifetime)</td>
+              <td>Mac + Windows</td>
+              <td>AI Engineers & Automations</td>
+              <td style="color: var(--cyan-accent); font-weight: 600;">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Amphetamine</strong></td>
+              <td>Free</td>
+              <td>Mac Only</td>
+              <td>Mac Power Users</td>
+              <td style="color: #ef4444; font-weight: 600;">No</td>
+            </tr>
+            <tr>
+              <td><strong>Caffeinated</strong></td>
+              <td>$2.99</td>
+              <td>Mac Only</td>
+              <td>Simplicity</td>
+              <td style="color: #ef4444; font-weight: 600;">No</td>
+            </tr>
+            <tr>
+              <td><strong>KeepingYouAwake</strong></td>
+              <td>Free</td>
+              <td>Mac Only</td>
+              <td>Open Source Fans</td>
+              <td style="color: #ef4444; font-weight: 600;">No</td>
+            </tr>
+            <tr>
+              <td><strong>PowerToys Awake</strong></td>
+              <td>Free</td>
+              <td>Windows Only</td>
+              <td>Windows Sysadmins</td>
+              <td style="color: #ef4444; font-weight: 600;">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Our Pick callout box -->
+      <div class="pick-box">
+        <span class="pick-badge">Our Pick</span>
+        <h4>LidOrbit: Built for the AI Era</h4>
+        <p>AI agent workflows require hardware to work hard. When you close your laptop, you need safety guarantees. With built-in thermal limits, custom battery warning tones, and native cross-platform support, LidOrbit is the gold standard for developer persistence in 2026.</p>
+        
+        <div class="seo-cta-container">
+          <div class="cta-row" style="margin-bottom: 0;">
+            <a href="https://github.com/fahdzk/lidorbit/releases/download/v1.0.0/LIDORBIT.Setup.1.0.0.exe" class="btn-store">
+              <svg viewBox="0 0 24 24" fill="#00A4EF" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h11.377v11.372H0zM12.623 0H24v11.372H12.623zM0 12.623h11.377V24H0zM12.623 12.623H24V24H12.623z"/>
+              </svg>
+              <span class="store-text"><small>Direct Download</small><strong>Windows Installer</strong></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="seo-nav-links">
+        <a href="/">← Back to Home</a>
+        <a href="vs-amphetamine.html">Comparison: LidOrbit vs Amphetamine</a>
+        <a href="keep-mac-awake-lid-closed-ai-agents.html">How-To: Keep Mac Awake With Lid Closed</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="store-links">
+        <a href="https://www.microsoft.com/store" target="_blank" rel="noopener">Microsoft Store</a>
+        <a href="https://apps.apple.com" target="_blank" rel="noopener">Mac App Store</a>
+        <a href="vs-amphetamine.html">LidOrbit vs Amphetamine</a>
+        <a href="keep-mac-awake-lid-closed-ai-agents.html">Lid Closed Guide</a>
+        <a href="best-keep-awake-app-2026.html">Best Anti-Sleep Apps</a>
+      </div>
+      <div class="copyright">
+        © 2026 <span class="brand">LidOrbit</span> by ZeroKool Technologies. All rights reserved. · Contact: fahdzk@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/matrix.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          if (user && user.username) {
+            const loginText = document.getElementById('nav-login-text');
+            const loginLink = document.getElementById('nav-login-btn');
+            if (loginText && loginLink) {
+              loginText.textContent = user.username;
+              loginLink.href = '/dashboard.html';
+            }
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

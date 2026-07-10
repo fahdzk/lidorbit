@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (window.location.hostname === 'lidorbit.wasmer.app' || window.location.hostname === 'lidorbit.com') {
+      window.location.replace('https://www.lidorbit.com' + window.location.pathname + window.location.search);
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Keep Mac Awake With Lid Closed for AI Agents (2026 Guide)</title>
+  <meta name="description" content="Stop macOS from sleeping when you close your laptop lid. Learn how to keep local LLMs, server scripts, and AI agents running 24/7 safely." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .seo-page {
+      padding-top: 140px;
+      padding-bottom: 80px;
+    }
+    .seo-content {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .seo-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--purple-glow) 70%, var(--cyan-accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .seo-content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 48px;
+      margin-bottom: 20px;
+      color: var(--purple-glow);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+      padding-bottom: 8px;
+    }
+    .seo-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      color: var(--cyan-accent);
+    }
+    .seo-content p {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .seo-content ul, .seo-content ol {
+      margin-left: 24px;
+      margin-bottom: 24px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+    .pros-cons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 28px;
+    }
+    .pro-box {
+      background: rgba(0, 229, 255, 0.03);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      padding: 16px;
+      border-radius: 8px;
+    }
+    .con-box {
+      background: rgba(239, 68, 68, 0.03);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      padding: 16px;
+      border-radius: 8px;
+    }
+    .pro-con-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pro-box .pro-con-title {
+      color: var(--cyan-accent);
+    }
+    .con-box .pro-con-title {
+      color: #ef4444;
+    }
+    .pro-con-list {
+      list-style: none !important;
+      margin: 0 !important;
+    }
+    .pro-con-list li {
+      font-size: 0.9rem !important;
+      margin-bottom: 4px !important;
+    }
+    .pro-con-list li::before {
+      margin-right: 6px;
+    }
+    .pro-con-list.pros li::before {
+      content: "✓";
+      color: var(--cyan-accent);
+    }
+    .pro-con-list.cons li::before {
+      content: "✗";
+      color: #ef4444;
+    }
+    .callout-box {
+      background: rgba(139, 92, 246, 0.05);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--purple-bright);
+      padding: 24px;
+      border-radius: 12px;
+      margin: 32px 0;
+    }
+    .callout-box h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .faq-sec {
+      margin-top: 48px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+      padding: 20px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-question {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .faq-answer {
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .seo-cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 48px 0;
+      padding: 40px;
+      background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, rgba(0, 229, 255, 0.02) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      text-align: center;
+    }
+    .seo-cta-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .seo-cta-sub {
+      color: var(--text-dim);
+      font-size: 1rem;
+      margin-bottom: 24px;
+      max-width: 500px;
+    }
+    .seo-nav-links {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .seo-nav-links a {
+      color: var(--purple-glow);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .seo-nav-links a:hover {
+      color: var(--cyan-accent);
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .pros-cons-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "How to Keep Your Mac Awake With the Lid Closed for AI Agents (2026)",
+    "description": "Stop macOS from sleeping when the lid is closed. Learn the terminal overrides, apps, hardware hacks, and safety settings to keep local models running.",
+    "author": {
+      "@type": "Organization",
+      "name": "LidOrbit"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.lidorbit.com/keep-mac-awake-lid-closed-ai-agents.html"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <div class="matrix-bg"></div>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <nav>
+      <div class="logo"><a href="/" style="color: inherit; text-decoration: none;">Lid<span>Orbit</span></a></div>
+      <ul>
+        <li><a href="/#proof">Demo</a></li>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#in-action">In Action</a></li>
+        <li><a href="/#why">Why It Matters</a></li>
+        <li><a href="/#origin">Origin</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="/login.html" id="nav-login-btn" class="nav-login-link">
+          <svg class="nav-login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 6px;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="nav-login-text">Sign In</span>
+        </a>
+        <a href="/purchase.html" class="nav-cta">Buy License</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container seo-page">
+    <article class="seo-content">
+      <h1>How to Keep Your Mac Awake With the Lid Closed for AI Agents (2026)</h1>
+      
+      <p>Whether you are running an autonomous coding loop in the terminal (like Claude Code or Aider), executing database seeding scripts, or serving local LLMs (using Ollama or LM Studio), your background tasks take time. However, the moment you close your MacBook lid to move to a meeting room, catch a flight, or pack up at a coffee shop, macOS automatically triggers system sleep.</p>
+      
+      <p>This suspends your CPU/GPU cores, immediately kills active terminal processes, drops your server handshakes, and corrupts your model context. How do you bypass this default sleep behavior? Let's analyze every solution to keep your Mac awake with the lid closed.</p>
+
+      <h2>The Problem: Clamshell Sleep Triggers</h2>
+      <p>Apple enforces system sleep when a notebook lid is closed to preserve battery life and prevent the display from taking on residual heat generated by the keyboard deck under heavy loads. For AI engineers, this default trigger is a productivity killer. Here are five ways to override it.</p>
+
+      <h2>5 Solutions to Keep Your Mac Running Lid-Closed</h2>
+
+      <h3>1. The Terminal Route (`pmset`)</h3>
+      <p>You can use the built-in Power Management command-line utility to completely disable system sleep triggers.</p>
+      <div class="pros-cons-grid">
+        <div class="pro-box">
+          <div class="pro-con-title">Pros</div>
+          <ul class="pro-con-list pros">
+            <li>Built directly into macOS</li>
+            <li>Free to use</li>
+            <li>No software downloads required</li>
+          </ul>
+        </div>
+        <div class="con-box">
+          <div class="pro-con-title">Cons</div>
+          <ul class="pro-con-list cons">
+            <li>Requires `sudo` root privileges</li>
+            <li>No safety guards (risk of thermal damage)</li>
+            <li>Must be manually toggled off</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>How to execute:</strong> Open Terminal and run `sudo pmset -a disablesleep 1` to disable sleep. *Warning: Remember to run `sudo pmset -a disablesleep 0` to enable normal sleep behaviors when done, or your laptop will stay awake forever, potentially draining your battery completely.*</p>
+
+      <h3>2. Amphetamine + Enhancer</h3>
+      <p>The most popular general-purpose keep-awake utility on macOS.</p>
+      <div class="pros-cons-grid">
+        <div class="pro-box">
+          <div class="pro-con-title">Pros</div>
+          <ul class="pro-con-list pros">
+            <li>Free and highly customisable</li>
+            <li>Dozens of trigger options</li>
+          </ul>
+        </div>
+        <div class="con-box">
+          <div class="pro-con-title">Cons</div>
+          <ul class="pro-con-list cons">
+            <li>Requires separate "Enhancer" app download</li>
+            <li>No hardware thermal safety controls</li>
+            <li>Strictly Mac-only utility</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>3. LidOrbit (Recommended Choice)</h3>
+      <p>A modern anti-sleep application built specifically for hardware-taxing developer workflows and agent loops.</p>
+      <div class="pros-cons-grid">
+        <div class="pro-box">
+          <div class="pro-con-title">Pros</div>
+          <ul class="pro-con-list pros">
+            <li>One-tap native lid-closed overrides</li>
+            <li>Active thermal safety monitoring</li>
+            <li>Battery check safety alarms below 15%</li>
+            <li>Works on both Mac and Windows</li>
+          </ul>
+        </div>
+        <div class="con-box">
+          <div class="pro-con-title">Cons</div>
+          <ul class="pro-con-list cons">
+            <li>Paid ($5.99 lifetime unlock)</li>
+          </ul>
+        </div>
+      </div>
+      <p>LidOrbit is our recommended option if you want a **safe, set-and-forget experience**. If your AI loops push system thermals too high while closed in your backpack, LidOrbit detects the spike and auto-releases the block, protecting your silicon.</p>
+
+      <h3>4. USB-C Dummy Display Hack</h3>
+      <p>A physical plug that fools macOS into thinking a monitor is attached.</p>
+      <div class="pros-cons-grid">
+        <div class="pro-box">
+          <div class="pro-con-title">Pros</div>
+          <ul class="pro-con-list pros">
+            <li>Completely fools OS display checks</li>
+          </ul>
+        </div>
+        <div class="con-box">
+          <div class="pro-con-title">Cons</div>
+          <ul class="pro-con-list cons">
+            <li>Requires buying physical hardware</li>
+            <li>Must be plugged in continually</li>
+            <li>No thermal threshold safety checks</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>5. System Settings Clamshell Mode</h3>
+      <p>Apple's native clamshell mode configuration.</p>
+      <div class="pros-cons-grid">
+        <div class="pro-box">
+          <div class="pro-con-title">Pros</div>
+          <ul class="pro-con-list pros">
+            <li>100% native and supported by Apple</li>
+          </ul>
+        </div>
+        <div class="con-box">
+          <div class="pro-con-title">Cons</div>
+          <ul class="pro-con-list cons">
+            <li>Requires external display</li>
+            <li>Requires external keyboard/mouse</li>
+            <li>Must be connected to power adapter</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Windows Users: The Lid-Closed Action</h2>
+      <p>If you are developing on Windows, the situation is different. Windows does not have equivalents to Amphetamine. The standard way to keep Windows awake is by going to Control Panel, editing the power plan, and changing "When I close the lid" to "Do Nothing". However, doing this manually is annoying and offers zero battery warnings when unplugged. **LidOrbit** is the only keep-awake utility on this list that works natively on Windows, toggling registry settings and standby limits automatically with a single click.</p>
+
+      <section class="faq-sec">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+          <div class="faq-question">Will closing the lid with my Mac awake cause overheating?</div>
+          <div class="faq-answer">
+            It can. MacBooks disperse some heat through the keyboard deck. Under light terminal tasks, it is perfectly fine. Under heavy compile runs or LLM training, it can get very hot. That is why having an app like LidOrbit with **thermal threshold safety checks** is crucial for protection.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Why does my Mac sleep even with sleep-blockers active?</div>
+          <div class="faq-answer">
+            Most sleep-blockers only block "display sleep". If your laptop is unplugged, system-level battery sleep overrides them. LidOrbit bypasses both display and system power standby parameters directly.
+          </div>
+        </div>
+      </section>
+
+      <div class="seo-cta-container">
+        <h3 class="seo-cta-title">Arm Your Agents. Close Your Lid.</h3>
+        <p class="seo-cta-sub">Get the safest, most reliable keep-awake utility built for AI developers and automation engineers.</p>
+        <div class="cta-row" style="margin-bottom: 0;">
+          <a href="https://github.com/fahdzk/lidorbit/releases/download/v1.0.0/LIDORBIT.Setup.1.0.0.exe" class="btn-store">
+            <svg viewBox="0 0 24 24" fill="#00A4EF" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h11.377v11.372H0zM12.623 0H24v11.372H12.623zM0 12.623h11.377V24H0zM12.623 12.623H24V24H12.623z"/>
+            </svg>
+            <span class="store-text"><small>Direct Download</small><strong>Windows Installer</strong></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="seo-nav-links">
+        <a href="/">← Back to Home</a>
+        <a href="vs-amphetamine.html">Comparison: LidOrbit vs Amphetamine</a>
+        <a href="best-keep-awake-app-2026.html">Roundup: Best Keep-Awake Apps of 2026</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="store-links">
+        <a href="https://www.microsoft.com/store" target="_blank" rel="noopener">Microsoft Store</a>
+        <a href="https://apps.apple.com" target="_blank" rel="noopener">Mac App Store</a>
+        <a href="vs-amphetamine.html">LidOrbit vs Amphetamine</a>
+        <a href="keep-mac-awake-lid-closed-ai-agents.html">Lid Closed Guide</a>
+        <a href="best-keep-awake-app-2026.html">Best Anti-Sleep Apps</a>
+      </div>
+      <div class="copyright">
+        © 2026 <span class="brand">LidOrbit</span> by ZeroKool Technologies. All rights reserved. · Contact: fahdzk@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/matrix.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          if (user && user.username) {
+            const loginText = document.getElementById('nav-login-text');
+            const loginLink = document.getElementById('nav-login-btn');
+            if (loginText && loginLink) {
+              loginText.textContent = user.username;
+              loginLink.href = '/dashboard.html';
+            }
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
