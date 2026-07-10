@@ -37,9 +37,9 @@ jobs:
       - name: Build Application
         run: |
           if [ "${{ matrix.os }}" = "macos-latest" ]; then
-            npm run dist:mac
+            npm run dist:mac -- --publish never
           else
-            npm run dist:win
+            npm run dist:win -- --publish never
           fi
         shell: bash
 
