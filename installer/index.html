@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LidOrbit Setup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="orb-container" id="draggable-bg">
+    <!-- Matrix rain ambient texture -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Custom Window Controls -->
+    <div class="window-controls">
+      <button id="btn-minimize" class="control-btn" title="Minimize">
+        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+      <button id="btn-close" class="control-btn" title="Close">
+        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- UI Overlay (safe region inside circle) -->
+    <div class="ui-content">
+      <!-- Title Logo -->
+      <div class="brand-header">
+        <span class="brand-lid">Lid</span><span class="brand-orbit">Orbit</span>
+      </div>
+
+      <!-- Ring + Stats -->
+      <div class="progress-container">
+        <svg class="progress-ring-svg" width="160" height="160" viewBox="0 0 200 200">
+          <defs>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Background track -->
+          <circle class="progress-ring-track" cx="100" cy="100" r="88"></circle>
+          <!-- Animated Ring -->
+          <circle class="progress-ring-fill" cx="100" cy="100" r="88" stroke-dasharray="553" stroke-dashoffset="553" filter="url(#glow)"></circle>
+        </svg>
+
+        <!-- Centered inside Ring -->
+        <div class="ring-label-wrapper">
+          <div id="progress-percentage" class="percentage-label">0%</div>
+          <div id="progress-status" class="status-label">READY</div>
+        </div>
+      </div>
+
+      <!-- Mono-spaced current file log -->
+      <div class="file-log-container">
+        <div id="current-file" class="file-log-text">Ready to configure system...</div>
+      </div>
+
+      <!-- EULA Section -->
+      <div class="eula-container">
+        <label class="eula-checkbox-label">
+          <input type="checkbox" id="eula-checkbox">
+          <span class="checkbox-custom"></span>
+          <span class="eula-text">I agree to the <a href="#" id="link-eula" class="eula-link">Terms & Disclaimer</a></span>
+        </label>
+      </div>
+
+      <!-- Action Button -->
+      <button id="btn-action" class="btn-primary" disabled>Install LidOrbit</button>
+
+      <!-- Footer URLs -->
+      <div class="footer-links">
+        <a href="#" id="link-terms" class="footer-link">Terms</a>
+        <span class="bullet">•</span>
+        <a href="#" id="link-privacy" class="footer-link">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

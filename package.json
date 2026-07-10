@@ -1,0 +1,82 @@
+{
+  "name": "lidorbit",
+  "version": "1.0.0",
+  "description": "LIDORBIT - Tiny floating widget to prevent your computer from sleeping",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "npm run dist:win && npm run dist:mac",
+    "dist:win": "cross-env BUILD_CHANNEL=direct electron-builder --win nsis",
+    "dist:mac": "cross-env BUILD_CHANNEL=direct electron-builder --mac dmg",
+    "dist:msix": "cross-env BUILD_CHANNEL=msstore electron-builder --win appx"
+  },
+  "keywords": [
+    "sleep-blocker",
+    "electron",
+    "keep-awake",
+    "floating-widget"
+  ],
+  "author": "LIDORBIT App",
+  "license": "ISC",
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.lidorbit.app",
+    "productName": "LIDORBIT",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "powerManager.js",
+      "licenseService.js",
+      "safetyManager.js",
+      "loading.html",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "assets/**/*"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "LIDORBIT"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.utilities",
+      "icon": "assets/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "appx": {
+      "identityName": "LidorbitApp",
+      "publisher": "CN=Lidorbit, O=Lidorbit, L=San Francisco, S=California, C=US",
+      "publisherDisplayName": "LIDORBIT Inc.",
+      "displayName": "LIDORBIT",
+      "languages": [
+        "en-US"
+      ]
+    }
+  }
+}

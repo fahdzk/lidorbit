@@ -1,0 +1,22 @@
+[package]
+name = "fahdzk/lidorbit-api"
+version = "0.1.0"
+description = "Description for package lidorbit-api"
+
+# See more keys and definitions at https://docs.wasmer.io/registry/manifest
+
+[dependencies]
+"quickjs/quickjs" = "*"
+
+[[module]]
+name = "lidorbit-api"
+source = "lidorbit-api.wasm"
+abi = "wasi"
+
+[module.interfaces]
+wasi = "0.1.0-unstable"
+
+[[command]]
+name = "lidorbit-api"
+module = "lidorbit-api"
+runner = "wasi"

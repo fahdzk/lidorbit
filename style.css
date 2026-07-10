@@ -1,0 +1,1096 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+/* Draggable Circular Widget */
+.widget-circle {
+  width: 180px;
+  height: 180px;
+  background: rgba(22, 22, 22, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.6), 
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transform: scale(var(--widget-scale, 1));
+  transition: border-color 0.3s, box-shadow 0.3s, width 0.3s, height 0.3s, border-radius 0.3s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  padding: 16px 12px;
+}
+
+/* Electron Drag Area */
+.drag {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Status Ring Glow (Pulsing green when active) */
+.status-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  z-index: 1;
+}
+
+.status-ring.active {
+  border-color: #10b981;
+  box-shadow: 
+    inset 0 0 15px rgba(16, 185, 129, 0.2), 
+    0 0 20px rgba(16, 185, 129, 0.4);
+  animation: pulse-ring-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-ring-glow {
+  0%, 100% {
+    box-shadow: 
+      inset 0 0 12px rgba(16, 185, 129, 0.2), 
+      0 0 12px rgba(16, 185, 129, 0.3);
+    border-color: rgba(16, 185, 129, 0.7);
+  }
+  50% {
+    box-shadow: 
+      inset 0 0 20px rgba(16, 185, 129, 0.35), 
+      0 0 25px rgba(16, 185, 129, 0.65);
+    border-color: rgba(16, 185, 129, 1);
+  }
+}
+
+/* Bottom Status Pulse Dot */
+.pulse-dot {
+  position: absolute;
+  bottom: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #333;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.pulse-dot.active {
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.9);
+  animation: pulse-dot-glow 1.5s infinite;
+}
+
+@keyframes pulse-dot-glow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+/* Symmetrical Centered Action Buttons Row */
+.action-buttons-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: -2px;
+  margin-bottom: 2px;
+  z-index: 3;
+}
+
+.action-icon-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 8px;
+  transition: color 0.2s, transform 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.action-icon-btn:hover {
+  color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.2);
+}
+
+.action-icon-btn.close-app-btn:hover {
+  color: #ef4444;
+}
+
+.action-icon-svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+  filter: invert(1) opacity(0.4);
+  transition: opacity 0.2s, filter 0.2s;
+  pointer-events: none;
+}
+
+.action-icon-btn:hover .action-icon-svg {
+  filter: invert(1) opacity(0.95);
+}
+
+/* premium Hardware Toggle Switch */
+.switch-outer {
+  width: 104px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  transform: scale(0.8);
+  margin-top: -6px;
+  margin-bottom: -6px;
+}
+
+.switch-track {
+  width: 92px;
+  height: 36px;
+  border-radius: 18px;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 3px 5px rgba(0, 0, 0, 0.8),
+    0 1px 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.switch-track:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ON State Track Glow */
+.switch-track.active {
+  background: #0d2149;
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(59, 130, 246, 0.7);
+}
+
+/* Knob Styling */
+.switch-knob {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffffff 0%, #dcdcdc 100%);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.4), 
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.knob-line {
+  width: 2px;
+  height: 10px;
+  background: #a8a8a8;
+  border-radius: 1px;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+}
+
+.switch-track.active .switch-knob {
+  transform: translateX(56px);
+  background: linear-gradient(180deg, #ffffff 0%, #ececec 100%);
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.5), 
+    0 0 8px rgba(59, 130, 246, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* ON/OFF Switch Labels */
+.label-on {
+  font-size: 9px;
+  font-weight: 800;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+  margin-left: 2px;
+}
+
+.label-off {
+  font-size: 9px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  margin-right: 2px;
+}
+
+.switch-track.active .label-on {
+  opacity: 1;
+}
+
+.switch-track.active .label-off {
+  opacity: 0;
+}
+
+/* Disabled Toggle (Greyed out for unlicensed users) */
+.switch-outer.disabled {
+  opacity: 0.45;
+  filter: grayscale(80%);
+}
+
+/* Circular Panel Overlay Base */
+.settings-panel, .activation-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(16, 16, 16, 0.45); /* Highly transparent and glassy, letting background show through */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.3s;
+  z-index: 10;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+.settings-panel:not(.hidden), .activation-modal:not(.hidden) {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Settings Layout */
+.panel-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 2px;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+
+.close-btn:hover {
+  color: #3b82f6;
+}
+
+.header-settings-icon {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between Settings Gear and Licenses icon */
+}
+
+.licenses-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  outline: none;
+  -webkit-app-region: no-drag;
+}
+
+.licenses-btn:hover {
+  transform: scale(1.15);
+}
+
+.licenses-icon-svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+  filter: invert(1) opacity(0.4);
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.licenses-btn:hover .licenses-icon-svg {
+  filter: invert(1) opacity(0.95);
+}
+
+.panel-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.setting-item {
+  width: 140px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 5px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-label {
+  font-weight: 500;
+}
+
+/* Status colors */
+.status-licensed {
+  color: #10b981;
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.status-unlicensed {
+  color: #f59e0b;
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(245, 158, 11, 0.2);
+}
+
+/* Activate Key Nav Button */
+.activate-nav-btn {
+  width: 140px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  background: #3b82f6;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin: 4px 0 6px 0;
+  transition: background 0.2s;
+}
+
+.activate-nav-btn:hover {
+  background: #2563eb;
+}
+
+.status-trial {
+  color: #fbbf24; /* amber/gold */
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(251, 191, 36, 0.2);
+}
+
+.msstore-purchase-section {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0 6px 0;
+  width: 120px;
+  justify-content: center;
+}
+
+.msstore-trial-btn {
+  flex: 1;
+  padding: 4px 0;
+  font-size: 8px;
+  font-weight: 600;
+  border-radius: 4px;
+  background: #0078d4; /* Microsoft blue */
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.msstore-trial-btn:hover {
+  background: #106ebe;
+}
+
+.msstore-cart-btn {
+  flex: 1;
+  padding: 4px 0;
+  font-size: 8px;
+  font-weight: 600;
+  border-radius: 4px;
+  background: #242424;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.msstore-cart-btn:hover {
+  background: #333;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Premium Checkbox Toggle */
+.checkbox-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 10px;
+}
+
+.checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  margin-bottom: 5px;
+}
+
+.checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 12px;
+  background-color: #242424;
+  border-radius: 6px;
+  position: relative;
+  transition: background-color 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.checkbox-label input:checked ~ .checkbox-custom {
+  background-color: #10b981;
+}
+
+.checkbox-custom::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  left: 1px;
+  top: 1px;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.checkbox-label input:checked ~ .checkbox-custom::after {
+  transform: translateX(8px);
+}
+
+/* Widget Size Selector Setting */
+.size-setting {
+  margin-bottom: 6px;
+}
+.size-buttons {
+  display: flex;
+  gap: 4px;
+}
+.size-btn {
+  background: #242424;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+.size-btn:hover {
+  background: #333;
+  color: #fff;
+}
+.size-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+/* Info Section */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  padding: 4px;
+  margin-top: 4px;
+  width: 140px;
+  box-sizing: border-box;
+}
+
+.info-label {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.info-val {
+  font-size: 9px;
+  font-family: monospace;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+
+/* Tooltip container for Mac battery warning */
+.mac-tooltip-container {
+  display: flex;
+  align-items: center;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 4px;
+  padding: 3px 6px;
+  margin-top: 6px;
+  width: 140px;
+  box-sizing: border-box;
+  gap: 4px;
+}
+
+.tooltip-icon {
+  font-size: 9px;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.tooltip-text {
+  font-size: 9px;
+  color: rgba(245, 158, 11, 0.85);
+  line-height: 1.1;
+}
+
+/* Quit Button */
+.quit-btn {
+  margin-top: 4px;
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  padding: 3px 10px;
+  font-size: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.quit-btn:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* Activation Modal Layout overrides for compact height */
+.pitch-text {
+  font-size: 11px;
+  margin-bottom: 5px;
+  width: 140px;
+  text-align: center;
+}
+.purchase-btn {
+  width: 140px;
+  padding: 4px 8px;
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+.input-container {
+  width: 140px;
+  margin-bottom: 5px;
+}
+.input-container input {
+  font-size: 11px !important;
+  padding: 5px 8px !important;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: #fff;
+  outline: none;
+}
+.modal-actions {
+  width: 140px;
+  gap: 6px;
+}
+.activate-btn, .cancel-btn {
+  padding: 4px 0;
+  font-size: 10px;
+}
+.activation-message {
+  font-size: 9px;
+  margin-top: 5px;
+  width: 140px;
+}
+.mac-tooltip-container {
+  width: 140px;
+  padding: 4px 6px;
+  margin-top: 4px;
+}
+.tooltip-text {
+  font-size: 8px;
+}
+
+/* Shape Settings & Selection Layout */
+.shape-setting {
+  margin-bottom: 4px;
+}
+
+.shape-buttons {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.shape-btn {
+  background: #242424;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.shape-btn:hover {
+  background: #333;
+}
+
+.shape-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.shape-icon {
+  width: 12px;
+  height: 12px;
+  display: block;
+  filter: invert(1) opacity(0.55);
+  transition: opacity 0.2s, filter 0.2s;
+  pointer-events: none;
+}
+
+.shape-btn:hover .shape-icon,
+.shape-btn.active .shape-icon {
+  filter: invert(1) opacity(0.95);
+}
+
+/* Widget Shapes & Border-Radius Overrides */
+.widget-circle.circle {
+  border-radius: 50%;
+}
+.widget-circle.square {
+  border-radius: 16px;
+}
+.widget-circle.rectangle {
+  width: 240px;
+  border-radius: 16px;
+}
+
+/* Status Ring border radius sync */
+.widget-circle.circle .status-ring {
+  border-radius: 50%;
+}
+.widget-circle.square .status-ring,
+.widget-circle.rectangle .status-ring {
+  border-radius: 16px;
+}
+
+/* Settings and Activation overlays border radius sync */
+.widget-circle.circle .settings-panel,
+.widget-circle.circle .activation-modal {
+  border-radius: 50%;
+}
+.widget-circle.square .settings-panel,
+.widget-circle.square .activation-modal,
+.widget-circle.rectangle .settings-panel,
+.widget-circle.rectangle .activation-modal {
+  border-radius: 16px;
+}
+
+/* Auto-adjust layout for shape visibility */
+.widget-circle.circle .panel-header {
+  padding: 0 22px;
+  margin-top: 6px;
+}
+.widget-circle.circle .settings-panel {
+  padding: 10px 12px 14px 12px;
+}
+.widget-circle.circle .quit-btn {
+  margin-top: 2px;
+}
+
+.widget-circle.square .panel-header,
+.widget-circle.rectangle .panel-header {
+  padding: 0 10px;
+  margin-top: 2px;
+}
+
+/* Ensure the text and titles in the activation modal are grey */
+.activation-modal {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.activation-modal .modal-title {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.activation-modal .pitch-text {
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.2;
+}
+
+.activation-modal .activation-message {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.activation-modal .activation-message.error {
+  color: #ef4444;
+}
+
+.activation-modal .activation-message.success {
+  color: #10b981;
+}
+
+/* Make all interactive controls not-draggable, while leaving the rest of the window draggable */
+button, input, select, textarea, label, .no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Alarm Setting Layout */
+.alarm-setting-row {
+  margin-top: 4px;
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.alarm-icon {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  display: block;
+  filter: invert(1) opacity(0.4);
+  transition: opacity 0.2s, filter 0.2s, transform 0.2s;
+  -webkit-app-region: no-drag;
+}
+
+.alarm-icon:hover {
+  filter: invert(1) opacity(0.85);
+  transform: scale(1.15);
+}
+
+.alarm-icon.active {
+  filter: invert(1) opacity(0.95) drop-shadow(0 0 4px rgba(59, 130, 246, 0.7));
+}
+
+.alarm-adjust-btn {
+  background: #242424;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 8px;
+  font-weight: 700;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  outline: none;
+  padding: 0;
+}
+
+.alarm-adjust-btn:hover:not(:disabled) {
+  background: #333;
+  color: #fff;
+}
+
+.alarm-adjust-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#alarm-time-txt {
+  min-width: 20px;
+  text-align: center;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.65); /* explicit settings-theme grey */
+}
+
+/* ---------- Expanded Panels Visual Optimization (380x540) ---------- */
+.widget-circle.expanded {
+  width: 100% !important;
+  height: 100% !important;
+  transform: scale(1) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.75), 
+    inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+}
+
+.settings-panel, .activation-modal {
+  padding: 24px 20px !important;
+}
+
+.settings-panel .setting-item,
+.settings-panel .input-container,
+.settings-panel .modal-actions,
+.settings-panel .activation-message,
+.settings-panel .info-section,
+.settings-panel .mac-tooltip-container,
+.settings-panel .msstore-purchase-section,
+.settings-panel .checkbox-row,
+.settings-panel #license-details-sec {
+  width: 280px !important;
+}
+
+.activation-modal .pitch-text,
+.activation-modal .purchase-btn,
+.activation-modal .input-container,
+.activation-modal .modal-actions,
+.activation-modal .activation-message,
+.activation-modal .mac-tooltip-container {
+  width: 280px !important;
+}
+
+.input-container input {
+  font-size: 13px !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  transition: all 0.2s ease !important;
+}
+
+.input-container input:focus {
+  border-color: hsl(263, 75%, 52%) !important;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3) !important;
+}
+
+.activation-modal .modal-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 8px !important;
+}
+
+.activation-modal .pitch-text {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  margin-bottom: 16px !important;
+}
+
+.activation-modal .modal-actions {
+  display: flex !important;
+  gap: 10px !important;
+  width: 280px !important;
+  margin-top: 8px !important;
+}
+
+.activation-modal .activate-btn {
+  flex: 1 !important;
+  padding: 10px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, hsl(263, 75%, 52%), hsl(290, 80%, 58%)) !important;
+  border: none !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3) !important;
+}
+
+.activation-modal .activate-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(147, 51, 234, 0.5) !important;
+}
+
+.activation-modal .cancel-btn {
+  flex: 1 !important;
+  padding: 10px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.activation-modal .cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.activation-modal .activation-message {
+  font-size: 11px !important;
+  margin-top: 12px !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+}
+
+.settings-panel .setting-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 13px !important;
+  margin-bottom: 12px !important;
+}
+
+.settings-panel .setting-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.settings-panel .activate-nav-btn {
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.settings-panel .checkbox-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-bottom: 16px !important;
+}
+
+.settings-panel .checkbox-label {
+  font-size: 12px !important;
+}
+
+.settings-panel .quit-btn {
+  width: 280px !important;
+  padding: 10px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  margin-top: 16px !important;
+}
+
+/* Password Reveal Toggle Styles */
+.password-container {
+  position: relative;
+  width: 140px; /* default compact modal size */
+}
+
+.settings-panel .password-container,
+.activation-modal .password-container {
+  width: 280px !important; /* expanded modal size */
+}
+
+.password-container input {
+  padding-right: 32px !important;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  z-index: 5;
+  -webkit-app-region: no-drag;
+}
+
+.password-toggle-btn:hover {
+  color: #fff;
+}
+
+.password-toggle-btn svg {
+  display: block;
+}
+
+

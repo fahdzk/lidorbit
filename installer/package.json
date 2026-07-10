@@ -1,0 +1,60 @@
+{
+  "name": "lidorbit-installer",
+  "version": "1.0.0",
+  "description": "LidOrbit Circular Installer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win portable --x64",
+    "dist:mac": "electron-builder --mac dmg"
+  },
+  "author": "ZeroKool Technologies",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.zerokool.lidorbit.installer",
+    "productName": "LidOrbit Setup",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "extraResources/",
+        "to": "app-payload/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "requestExecutionLevel": "user",
+      "artifactName": "${productName}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.icns",
+      "category": "public.app-category.utilities"
+    }
+  }
+}

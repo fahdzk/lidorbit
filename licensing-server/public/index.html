@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (window.location.hostname === 'lidorbit.wasmer.app' || window.location.hostname === 'lidorbit.com') {
+      window.location.replace('https://www.lidorbit.com' + window.location.pathname + window.location.search);
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LidOrbit — Lid Closed. Agents Armed. Zero Interruptions.</title>
+  <meta name="description" content="LidOrbit keeps your terminal scripts, local LLMs, and agentic AI loops executing flawlessly — even when your laptop lid is snapped completely shut." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="matrix-bg"></div>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <nav>
+      <div class="logo">Lid<span>Orbit</span></div>
+      <ul>
+        <li><a href="#proof">Demo</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#in-action">In Action</a></li>
+        <li><a href="#why">Why It Matters</a></li>
+        <li><a href="#origin">Origin</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="/login.html" id="nav-login-btn" class="nav-login-link">
+          <svg class="nav-login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 6px;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="nav-login-text">Sign In</span>
+        </a>
+        <a href="/purchase.html" class="nav-cta">Buy License</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero" id="download">
+    <div class="eyebrow">// runs while you dip //</div>
+    <h1>STOP BABY-SITTING YOUR AGENTS.</h1>
+    <p class="sub">
+      LidOrbit keeps your terminal scripts, local LLMs, and agentic AI loops executing flawlessly —
+      even when your laptop lid is snapped completely shut.
+    </p>
+    <p class="tagline">Lid Closed. Agents Armed. Zero Interruptions.</p>
+
+    <div class="cta-row">
+      <a href="https://www.microsoft.com/store" class="btn-store" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="#00A4EF" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h11.377v11.372H0zM12.623 0H24v11.372H12.623zM0 12.623h11.377V24H0zM12.623 12.623H24V24H12.623z"/>
+        </svg>
+        <span class="store-text"><small>Download for</small><strong>Windows</strong></span>
+      </a>
+      <a href="https://apps.apple.com" class="btn-store" target="_blank" rel="noopener">
+        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#111" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-23.6 1.4-50.9 16.4-66.5 34.7-17.2 19.8-27.3 44.3-25.2 71.8 25.4 2 48.4-11 67.7-34z"/>
+        </svg>
+        <span class="store-text"><small>Download for</small><strong>macOS</strong></span>
+      </a>
+    </div>
+
+    <div class="pricing-note">
+      One-time <span class="hl">$5.99 lifetime unlock</span> — no subs, no rug pulls
+    </div>
+  </section>
+
+  <!-- SECTION 2: PROOF / VIDEO -->
+  <section id="proof">
+    <div class="container">
+      <div class="section-label">the receipts</div>
+      <h2 class="section-title">Watch it <span class="accent">flex</span> in real time</h2>
+      <div class="video-wrap">
+        <div class="video-frame">
+          <!-- INSERT OVERVIEW VIDEO EMBED HERE -->
+          <div class="placeholder">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p>OVERVIEW VIDEO — DROP EMBED HERE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-label">under the hood</div>
+      <h2 class="section-title">Built different. <span class="accent">Stays running.</span></h2>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3 3"/>
+            </svg>
+          </div>
+          <h3>One-Tap Persistence</h3>
+          <p>A floating circular widget with a single toggle that instantly overrides OS sleep and hibernation — flip it once, your session never taps out.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/>
+            </svg>
+          </div>
+          <h3>Smart Thermal Protections</h3>
+          <p>Configurable safety limits keep your bag from turning into a panini press — LidOrbit throttles before things get toasty.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="18" height="10" rx="2"/>
+              <line x1="22" y1="11" x2="22" y2="13"/>
+              <rect x="5" y="10" width="8" height="4" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3>🔋 Intelligent Battery Guard</h3>
+          <p>Fully customizable alarm fires and safely suspends your tasks the moment battery hits 10% — no fried agents, no lost context.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3.5: WHY IT MATTERS -->
+  <section id="why" class="why-section">
+    <div class="container">
+      <div class="section-label">real talk</div>
+      <h2 class="section-title">Why this even <span class="accent">matters</span></h2>
+      <div class="why-grid">
+        <div class="copy">
+          <h3>Your agents don't care about your commute.</h3>
+          <p>
+            Modern dev work isn't a 9-to-5 at a desk anymore — it's a <strong>fine-tune running while you grab a coffee</strong>,
+            a <strong>local LLM crunching embeddings</strong> on the train, an <strong>agentic loop scraping and refactoring</strong>
+            while you're heads-down in a standup somewhere else.
+          </p>
+          <p>
+            Every laptop OS on the planet is engineered around one assumption: <strong>closed lid = done working.</strong>
+            That assumption is dead. The work doesn't stop just because you need to move.
+          </p>
+          <p>
+            LidOrbit kills that assumption. It's the difference between losing six hours of compute to a sleep state
+            and walking back to a finished build, a trained model, or a completed pipeline — <strong>no babysitting required.</strong>
+          </p>
+        </div>
+        <div class="terminal">
+          <div class="tbar">
+            <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+          </div>
+          <div class="line"><span class="prompt">$</span> agent_loop --watch ./repo --autonomous</div>
+          <div class="line"><span class="ok">[ok]</span> 1,204 tokens/s — local LLM warm</div>
+          <div class="line">&gt; closing lid in 3... 2... 1...</div>
+          <div class="line"><span class="warn">[lidorbit]</span> sleep override engaged</div>
+          <div class="line"><span class="warn">[lidorbit]</span> thermal ceiling: nominal</div>
+          <div class="line"><span class="ok">[ok]</span> agent still cooking. lid: closed.</div>
+          <div class="line">&gt; battery: 11% ...</div>
+          <div class="line"><span class="warn">[lidorbit]</span> 10% threshold hit — safe suspend</div>
+          <div class="line"><span class="ok">[ok]</span> session checkpointed. zero loss.</div>
+          <div class="line"><span class="prompt">$</span> <span style="opacity:.5">_</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ORIGIN STORY -->
+  <section id="origin">
+    <div class="container origin">
+      <div class="section-label">the origin</div>
+      <h2 class="section-title">Bred in the Coffee Shop.<br>Built for the Modern Dev.</h2>
+      <p>
+        LidOrbit was born out of a common coffee-shop frustration. ZeroKool Technologies founder,
+        Fahd Ali, watched countless vibe coders and AI engineers awkwardly balancing half-open laptops
+        while rushing into Ubers just to keep their terminal loops from dying.
+      </p>
+      <p>
+        Why sacrifice hardware mobility for process persistence? Fahd engineered LidOrbit to give developers
+        absolute freedom: flip the switch, close your laptop, pack it away, and let your code finish the job.
+      </p>
+      <p class="sig">— ZeroKool Technologies // est. for builders who don't stop</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4.5: IN ACTION / SCREENSHOTS -->
+  <section id="in-action">
+    <div class="container">
+      <div class="section-label">on your desktop</div>
+      <h2 class="section-title">Floats <span class="accent">anywhere</span>. Watches everything.</h2>
+
+      <div class="shot-row main-shot">
+        <div class="shot-frame">
+          <img src="img/screenshot-desktop.png" alt="LidOrbit floating widget hovering beside an active AI agent terminal session on a Windows desktop" loading="lazy">
+        </div>
+        <div class="shot-copy">
+          <h3>Parks itself right next to the action.</h3>
+          <p>
+            Drop it next to Claude Code, Codex, Hermes Agent, OpenCode, or whatever you've got running in the terminal.
+            The toggle stays one glance away — flip it <strong>ON</strong>, snap the lid shut, and let the agent cook
+            while you're out grabbing coffee.
+          </p>
+          <p>
+            Works alongside any CLI agent, local model runner, or long-running script. LidOrbit doesn't care what's
+            in your terminal — it just makes sure the terminal doesn't go to sleep on you.
+          </p>
+        </div>
+      </div>
+
+      <div class="shot-row reverse">
+        <div class="shot-frame settings-frame">
+          <img src="img/settings-panel.png" alt="LidOrbit settings panel showing license status, launch options, shape picker, and alarm interval" loading="lazy">
+        </div>
+        <div class="shot-copy">
+          <h3>One panel. Every control.</h3>
+          <p>
+            Tap the gear to pull up settings: check your <strong>license status</strong>, flip
+            <strong>Launch on Login (LOL)</strong> and <strong>Always on Top (AOT)</strong>, pick a shape, and dial
+            in the battery alarm interval — capped at a sensible 8-minute minimum so you never get spammed.
+          </p>
+          <p>
+            The license icon up top links straight to the privacy policy and terms, no digging through menus required.
+          </p>
+        </div>
+      </div>
+
+      <div class="shapes-block">
+        <h3 class="shapes-title">Three shapes. <span class="accent">One widget.</span></h3>
+        <p class="shapes-sub">Cycle through Circle, Square, and Rectangle with a single tap — drag it anywhere on screen, on any monitor.</p>
+        <div class="shapes-grid">
+          <div class="shape-card">
+            <img src="img/shape-circle.png" alt="LidOrbit widget in circle shape, toggle set to ON">
+            <span>Circle · 140×140</span>
+          </div>
+          <div class="shape-card">
+            <img src="img/shape-square.png" alt="LidOrbit widget in square shape, toggle set to ON">
+            <span>Square · 140×140</span>
+          </div>
+          <div class="shape-card">
+            <img src="img/shape-rect.png" alt="LidOrbit widget in rectangle shape, toggle set to OFF">
+            <span>Rectangle · 180×140</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-label">no cap pricing</div>
+      <h2 class="section-title">Get Lifetime Access. <span class="accent">Keep it forever.</span></h2>
+      <div style="display: flex; justify-content: center; margin-top: 40px;">
+        <div class="price-card highlight" style="max-width: 450px; width: 100%; margin: 0;">
+          <div class="tag">Lifetime Unlock</div>
+          <h3>$5.99</h3>
+          <div class="period">one time. forever. no subs.</div>
+          <ul style="list-style: none; padding: 0; text-align: left; margin: 24px 0;">
+            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">✓ Premium Sleep Bypass & Wake Lock</li>
+            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">✓ Custom Shapes (Circle, Square, Rectangle)</li>
+            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">✓ Battery Guard Alarm (Intelligent Suspends)</li>
+            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">✓ Launch on Login & Always on Top Controls</li>
+            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">✓ Secure Single-Device Hardware Binding</li>
+          </ul>
+          <a href="/purchase.html" class="nav-cta" style="display: block; text-align: center; margin-top: 24px; background: var(--accent-gradient); text-decoration: none; box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25);">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY POLICY -->
+  <section id="privacy-policy">
+    <div class="container">
+      <div class="section-label">legal</div>
+      <h2 class="section-title">Privacy <span class="accent">Policy</span></h2>
+      <div class="privacy-box">
+        <script id="usercentrics-ppg" privacy-policy-id="66b35eae-beb6-4b94-9693-ec6b4f91ecca" data-language="en" src="https://policygenerator.usercentrics.eu/api/privacy-policy"></script>
+        <div class="uc-privacy-policy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="store-links">
+        <a href="https://www.microsoft.com/store" target="_blank" rel="noopener">Microsoft Store</a>
+        <a href="https://apps.apple.com" target="_blank" rel="noopener">Mac App Store</a>
+        <a href="#privacy-policy">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        © 2026 <span class="brand">LidOrbit</span> by ZeroKool Technologies. All rights reserved. · Contact: fahdzk@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/matrix.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          if (user && user.username) {
+            const loginText = document.getElementById('nav-login-text');
+            const loginLink = document.getElementById('nav-login-btn');
+            if (loginText && loginLink) {
+              loginText.textContent = user.username;
+              loginLink.href = '/dashboard.html';
+            }
+          }
+        } catch (e) {
+          console.error('Error parsing local user session:', e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

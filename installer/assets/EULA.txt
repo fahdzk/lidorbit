@@ -1,0 +1,95 @@
+================================================================================
+                    LIDORBIT END USER LICENSE AGREEMENT (EULA)
+                      Developed by ZeroKool Technologies
+                          Last Updated: June 2026
+================================================================================
+
+Please read this End User License Agreement ("Agreement") carefully before 
+installing or using the LidOrbit software application ("Software"). By checking 
+the "I agree to the Terms & Disclaimer" box, installing, or using the Software, 
+you are agreeing to be bound by the terms and conditions of this Agreement. 
+
+If you do not agree to the terms of this Agreement, do not install or use 
+the Software.
+
+--------------------------------------------------------------------------------
+1. LICENSE GRANT
+--------------------------------------------------------------------------------
+ZeroKool Technologies grants you a limited, non-exclusive, non-transferable, 
+non-sublicensable, revocable license to download, install, and use the Software 
+solely for personal or internal business purposes, strictly in accordance 
+with the terms of this Agreement.
+
+--------------------------------------------------------------------------------
+2. FUNCTIONAL CAPABILITIES (WHAT THE SOFTWARE DOES)
+--------------------------------------------------------------------------------
+LidOrbit is a desktop utility designed to manage and override default system 
+standby, sleep, and hibernate behaviors. Key operations include:
+  - Core Sleep Bypass: When toggled to ON, the Software blocks standard display 
+    and system sleep behavior.
+  - Platform-Specific Tweaks:
+      * Windows: Automatically queries and backs up active standby and hibernate 
+        plan timeouts, temporarily overrides them to '0' (never sleep), and 
+        modifies the native Windows Lid-Close Action configuration to 'Do Nothing'.
+      * macOS: Spawns and keeps active a background 'caffeinate' terminal command.
+  - State Restoration: On graceful exit or toggle switch closure, LidOrbit 
+    attempts to restore all original power timeouts and configurations.
+  - Battery Safety Alarm: Includes a background loop that monitors battery levels. 
+    If battery capacity falls to 15% or below and the device is unplugged, the 
+    Software emits a dual-beep audio alert and displays system notifications to 
+    prompt immediate recharging. This alarm repeat interval is user-configurable, 
+    subject to a strict safety minimum limit of 8 minutes.
+
+--------------------------------------------------------------------------------
+3. LIMITATION OF LIABILITY & SYSTEM MODIFICATIONS
+--------------------------------------------------------------------------------
+You explicitly acknowledge that LidOrbit modifies system-level power behaviors:
+  - System Restoration: Setting recovery is performed on a best-effort basis. 
+    In the event of unexpected system shutdowns, power failures, or application 
+    crashes, system modifications might not be fully restored.
+  - Hardware Risk: Keeping laptop screens running while closed can lead to 
+    heat accumulation. YOU ASSUME ALL RISK AND RESPONSIBILITY FOR SYSTEM HEAT, 
+    OVERHEATING, VENTILATION ISSUES, PHYSICAL SCREEN DAMAGE, OR BATTERY 
+    DEGRADATION ASSOCIATED WITH RUNNING THE DEVICE WITH THE LID CLOSED.
+  - Disclaimer: ZEROKOOL TECHNOLOGIES AND ITS FOUNDERS, EMPLOYEES, AND AFFILIATES 
+    SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+    CONSEQUENTIAL, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO DEVICE 
+    DAMAGE, HARDWARE FAILURE, FINANCIAL LOSS, LOSS OF DATA, OR LOSS OF BUSINESS 
+    ARISING FROM THE USE OR INABILITY TO USE THE SOFTWARE.
+
+--------------------------------------------------------------------------------
+4. NO WARRANTY
+--------------------------------------------------------------------------------
+THE SOFTWARE IS PROVIDED TO YOU "AS IS" AND "AS AVAILABLE" WITH ALL FAULTS AND 
+WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE 
+LAW, ZEROKOOL TECHNOLOGIES EXPRESSLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, 
+IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING ALL IMPLIED WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+--------------------------------------------------------------------------------
+5. TRIALS, LICENSING, & DEVELOPMENT KEY
+--------------------------------------------------------------------------------
+  - Microsoft Store Trial: Microsoft Store builds include an integrated 
+    7-day free trial. If the Software is not upgraded upon trial expiration, 
+    the core keep-awake toggles will be locked.
+  - Licensing: Direct-download builds require a valid license key verified via 
+    remote API services.
+  - Admin Override Key: A master developer/administrator key 
+    ("LIDORBIT27111979XXx") is compiled directly into the Software for offline 
+    testing, validation, and debugging. Unauthorized distribution of this key 
+    outside of internal testing teams is strictly prohibited.
+
+--------------------------------------------------------------------------------
+6. PRIVACY POLICY & DATA HANDLING
+--------------------------------------------------------------------------------
+LidOrbit does not harvest personal details or sell user logs. Any licensing 
+handshakes are conducted through secure API endpoints. For complete data 
+protection guidelines, please review our Privacy Policy:
+https://www.lidorbit.com/privacy-policy
+
+--------------------------------------------------------------------------------
+7. CONTACT AND SUPPORT
+--------------------------------------------------------------------------------
+For license inquiries, questions, or bug reports, contact:
+ZeroKool Technologies Support - fahdzk@gmail.com
+================================================================================

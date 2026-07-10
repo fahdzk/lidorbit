@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIDORBIT</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Load Inter font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Main draggable floating circle widget -->
+    <div class="widget-circle drag">
+      <!-- Status glow ring surrounding the widget (green when bypass active, blue when license OK) -->
+      <div id="status-ring" class="status-ring"></div>
+
+      <!-- Hardware toggle switch container -->
+      <div class="switch-outer no-drag" id="toggle-switch-container">
+        <div class="switch-track" id="switch-track">
+          <span class="label-on">ON</span>
+          <div class="switch-knob" id="switch-knob">
+            <div class="knob-line"></div>
+          </div>
+          <span class="label-off">OFF</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons Row (symmetrically centered) -->
+      <div class="action-buttons-row no-drag">
+        <button id="minimize-btn" class="action-icon-btn" title="Minimize App">−</button>
+        <button id="resize-btn" class="action-icon-btn" title="Toggle Shape">
+          <img src="assets/toggle.svg" alt="Toggle Shape" class="action-icon-svg">
+        </button>
+        <button id="cart-btn" class="action-icon-btn hidden" title="Buy License">🛒</button>
+        <button id="gear-btn" class="action-icon-btn" title="Open Settings">⚙</button>
+        <button id="close-app-btn" class="action-icon-btn close-app-btn" title="Close App">×</button>
+      </div>
+
+      <!-- Tiny bottom indicator dot (pulses green when active) -->
+      <div id="pulse-dot" class="pulse-dot"></div>
+
+      <!-- Settings Panel (sliding / expanding inside the window space) -->
+      <div id="settings-panel" class="settings-panel drag hidden">
+        <div class="panel-header">
+          <button id="close-settings-btn" class="close-btn" title="Back">←</button>
+          <div class="header-center">
+            <span class="header-settings-icon" title="Settings">⚙</span>
+            <button id="licenses-btn" class="licenses-btn" title="Licenses & Data Protection">
+              <img src="assets/license.svg" alt="Licenses" class="licenses-icon-svg">
+            </button>
+          </div>
+          <div style="width: 18px; height: 1px; display: block;"></div>
+        </div>
+        <div class="panel-body">
+          <div class="setting-item flex-row" style="margin-bottom: 2px;">
+            <span class="setting-label">License:</span>
+            <span id="license-status-txt" class="status-unlicensed">Unlicensed</span>
+          </div>
+
+          <div id="license-details-sec" class="hidden" style="font-size: 9px; color: rgba(255, 255, 255, 0.4); text-align: left; width: 140px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 4px; margin-bottom: 6px; box-sizing: border-box; line-height: 1.3;">
+            <div style="margin-bottom: 2px;">User: <span id="license-username-lbl" style="color: rgba(255, 255, 255, 0.85); font-weight: 500;">-</span></div>
+            <div style="word-break: break-all;">Key: <span id="license-key-lbl" style="font-family: monospace; color: rgba(255, 255, 255, 0.85); font-size: 8px;">-</span></div>
+          </div>
+
+          <div style="display: flex; gap: 6px; width: 140px; justify-content: center; margin: 4px 0 6px 0;" class="no-drag">
+            <button id="register-nav-btn" class="activate-nav-btn" style="flex: 1; margin: 0; background: linear-gradient(135deg, hsl(263, 75%, 52%), hsl(290, 80%, 58%)); font-size: 10px;" title="Register / Buy License">🛒 Register</button>
+            <button id="activate-nav-btn" class="activate-nav-btn" style="flex: 1; margin: 0; font-size: 10px;">Log In</button>
+            <button id="logout-nav-btn" class="activate-nav-btn hidden" style="flex: 1; margin: 0; background: #ef4444; font-size: 10px;">Log Out</button>
+          </div>
+
+          <!-- MS Store Options Row -->
+          <div id="msstore-purchase-section" class="msstore-purchase-section hidden no-drag" style="width: 140px;">
+            <button id="msstore-trial-btn" class="msstore-trial-btn" title="Purchase via Microsoft Store">Trial</button>
+            <button id="msstore-cart-btn" class="msstore-cart-btn" title="Buy License via Cart">🛒 Purchase</button>
+          </div>
+
+          <div class="checkbox-row">
+            <label class="checkbox-label" title="Launch at login">
+              <span>LOL</span>
+              <input type="checkbox" id="launch-login-chk">
+              <span class="checkbox-custom"></span>
+            </label>
+
+            <label class="checkbox-label" title="Always on top">
+              <span>AOT</span>
+              <input type="checkbox" id="always-top-chk">
+              <span class="checkbox-custom"></span>
+            </label>
+          </div>
+
+          <!-- Widget Shape Selector -->
+          <div class="setting-item flex-row shape-setting">
+            <span class="setting-label">Shape:</span>
+            <div class="shape-buttons">
+              <button class="shape-btn" id="shape-btn-circle" data-shape="circle" title="Circle">
+                <img src="assets/circle.svg" alt="Circle" class="shape-icon">
+              </button>
+              <button class="shape-btn" id="shape-btn-square" data-shape="square" title="Square">
+                <img src="assets/square.svg" alt="Square" class="shape-icon">
+              </button>
+              <button class="shape-btn" id="shape-btn-rectangle" data-shape="rectangle" title="Rectangle">
+                <img src="assets/rectangle.svg" alt="Rectangle" class="shape-icon">
+              </button>
+            </div>
+          </div>
+
+          <!-- Opacity Slider Setting -->
+          <div class="setting-item flex-row" style="flex-direction: column; align-items: flex-start; gap: 2px;">
+            <div class="flex-row" style="width: 100%;">
+              <span class="setting-label">Opacity:</span>
+              <span id="opacity-val-lbl">100%</span>
+            </div>
+            <input type="range" id="opacity-slider" class="no-drag" min="30" max="100" value="100" style="width: 100%; accent-color: #3b82f6; cursor: pointer; height: 3px; background: #333; border-radius: 2px; border: none; outline: none; margin-top: 4px;">
+          </div>
+
+          <!-- Battery Warning Alarm Control -->
+          <div class="alarm-setting-row no-drag">
+            <img id="alarm-toggle-btn" src="assets/alarm_on.svg" alt="Toggle Battery Alarm" class="alarm-icon" title="Toggle Battery Alarm">
+            <button class="alarm-adjust-btn" id="alarm-dec-btn" title="Decrease Repeat Interval">−</button>
+            <span id="alarm-time-txt">10m</span>
+            <button class="alarm-adjust-btn" id="alarm-inc-btn" title="Increase Repeat Interval">+</button>
+          </div>
+
+          <div class="mac-tooltip-container hidden" id="mac-tooltip">
+            <span class="tooltip-icon">ℹ</span>
+            <span class="tooltip-text">On battery, MacBooks may sleep when closed unless plugged into power & screen.</span>
+          </div>
+
+          <button id="quit-btn" class="quit-btn">Quit App</button>
+        </div>
+      </div>
+
+      <!-- License Activation Modal (overlay) -->
+      <div id="activation-modal" class="activation-modal drag hidden">
+        <div class="modal-header">
+          <span class="modal-title">Log In to LIDORBIT</span>
+        </div>
+        <div class="modal-body">
+          <p id="activation-pitch" class="pitch-text">Unlock full sleep bypass features. Register after purchase.</p>
+          
+          <button id="purchase-btn" class="purchase-btn hidden">🛒 Buy License ($5.99)</button>
+
+          <!-- Tabs for Log In vs License Key -->
+          <div class="modal-tabs no-drag" style="display: flex; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 12px; box-sizing: border-box;">
+            <button id="tab-login-btn" type="button" style="flex: 1; background: none; border: none; color: #fff; border-bottom: 2px solid #6366f1; padding: 6px; font-size: 11px; cursor: pointer; font-weight: 600; outline: none; transition: all 0.2s;">Log In</button>
+            <button id="tab-key-btn" type="button" style="flex: 1; background: none; border: none; color: rgba(255,255,255,0.5); padding: 6px; font-size: 11px; cursor: pointer; font-weight: 500; outline: none; transition: all 0.2s;">License Key</button>
+          </div>
+          
+          <!-- Tab 1: Log In Fields -->
+          <div id="login-fields-container" style="width: 100%;">
+            <div class="input-container" style="margin-bottom: 8px;">
+              <input type="text" id="login-username-input" placeholder="Username or Email" spellcheck="false">
+            </div>
+
+            <div class="input-container password-container" style="margin-bottom: 12px;">
+              <input type="password" id="login-password-input" placeholder="Password" spellcheck="false">
+              <button type="button" id="login-password-toggle" class="password-toggle-btn" title="Toggle Password Visibility"></button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 16px; margin-top: -6px; padding: 0 4px; width: 280px; box-sizing: border-box;" class="no-drag">
+              <a href="#" id="register-link" style="color: hsl(280, 100%, 80%); font-size: 11px; text-decoration: none; font-weight: 500;">Create Account</a>
+              <a href="#" id="forgot-password-link" style="color: hsl(280, 100%, 80%); font-size: 11px; text-decoration: none; font-weight: 500;">Forgot Password?</a>
+            </div>
+          </div>
+
+          <!-- Tab 2: License Key Fields -->
+          <div id="key-fields-container" class="hidden" style="width: 100%;">
+            <div class="input-container" style="margin-bottom: 16px;">
+              <input type="text" id="login-key-input" placeholder="Stripe License Key (cs_test_...)" spellcheck="false">
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button id="activate-btn" class="activate-btn">Log In</button>
+            <button id="cancel-activation-btn" class="cancel-btn">Cancel</button>
+          </div>
+
+          <div id="activation-message" class="activation-message"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load renderer script -->
+  <script src="renderer.js"></script>
+</body>
+</html>

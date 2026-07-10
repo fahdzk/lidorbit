@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - LIDORBIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: hsl(240, 10%, 4.5%);
+      --card-bg: rgba(22, 22, 29, 0.45);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: hsl(0, 0%, 100%);
+      --text-secondary: hsl(240, 5%, 65%);
+      --accent: hsl(263, 75%, 52%);
+      --accent-gradient: linear-gradient(135deg, hsl(263, 75%, 52%) 0%, hsl(290, 80%, 58%) 100%);
+      --success-glow: rgba(147, 51, 234, 0.15);
+      --glow-color: rgba(147, 51, 234, 0.35);
+      --error: #ef4444;
+      --success: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .portal-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 24px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---------- Header / Nav ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(11, 11, 15, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      max-width: 1140px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .logo span {
+      color: hsl(280, 100%, 80%);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: hsl(280, 100%, 80%);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-login-link {
+      display: flex;
+      align-items: center;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-login-link:hover {
+      color: hsl(280, 100%, 80%);
+    }
+
+    .nav-cta {
+      background: hsl(263, 75%, 52%);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .nav-cta:hover {
+      background: hsl(280, 100%, 80%);
+      color: hsl(240, 10%, 4.5%) !important;
+    }
+
+    @media (max-width: 860px) {
+      nav ul { display: none; }
+    }
+
+    /* ---------- Binary matrix background ---------- */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(180deg, #0B0B0F 0%, #0B0B0F 30%, #2E1A47 100%);
+    }
+
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid rgba(139, 92, 246, 0.15);
+      padding: 50px 0 30px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      background: rgba(11, 11, 15, 0.9);
+      width: 100%;
+      margin-top: auto;
+    }
+
+    footer .store-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    footer .store-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      padding: 8px 18px;
+      border-radius: 999px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    footer .store-links a:hover {
+      color: hsl(280, 100%, 80%);
+      border-color: hsl(263, 75%, 52%);
+    }
+
+    footer .copyright {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+    }
+
+    footer .copyright .brand {
+      color: hsl(280, 100%, 80%);
+    }
+
+    .dashboard-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 520px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 50px var(--success-glow);
+      animation: floatIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      position: relative;
+    }
+
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    h1 span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      border-color: #f87171;
+      color: #f87171;
+    }
+
+    .status-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .status-badge.licensed {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+    }
+
+    .status-badge.unlicensed {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    .key-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .key-value {
+      font-family: monospace;
+      font-size: 13px;
+      color: hsl(280, 100%, 80%);
+      word-break: break-all;
+      text-align: left;
+    }
+
+    .btn-copy {
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+    }
+
+    .btn-buy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+      text-decoration: none;
+    }
+
+    .btn-buy:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(147, 51, 234, 0.5);
+    }
+
+    .activation-steps {
+      text-align: left;
+    }
+
+    .activation-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(147, 51, 234, 0.15);
+      border: 1px solid rgba(147, 51, 234, 0.3);
+      color: hsl(280, 100%, 80%);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text strong {
+      color: var(--text-primary);
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="matrix-bg"></div>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <nav>
+      <div class="logo"><a href="/" style="color: inherit; text-decoration: none;">Lid<span>Orbit</span></a></div>
+      <ul>
+        <li><a href="/#proof">Demo</a></li>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#in-action">In Action</a></li>
+        <li><a href="/#why">Why It Matters</a></li>
+        <li><a href="/#origin">Origin</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="/login.html" id="nav-login-btn" class="nav-login-link">
+          <svg class="nav-login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 6px;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="nav-login-text">Sign In</span>
+        </a>
+        <a href="/purchase.html" class="nav-cta">Buy License</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="portal-wrapper">
+    <main class="dashboard-container">
+    <div class="header">
+      <h1>Welcome, <span id="user-display">User</span></h1>
+      <button class="btn-logout" onclick="handleLogout()">Sign Out</button>
+    </div>
+
+    <div id="error-box" class="error-message"></div>
+
+    <div class="status-card">
+      <div id="status-badge" class="status-badge unlicensed">Unlicensed</div>
+      <h2 id="status-headline" style="font-size: 18px; margin-bottom: 8px;">Retrieve License Key</h2>
+      <p id="status-desc" class="subtitle" style="margin-bottom: 20px;">LIDORBIT license is required to activate the desktop floating app.</p>
+      
+      <div id="unlicensed-action">
+        <button class="btn-buy" onclick="handlePurchase()" style="width: 100%; margin-bottom: 20px; display: inline-flex; justify-content: center; box-sizing: border-box;">
+          <span>🛒 Purchase Lifetime License - $5.99</span>
+        </button>
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 20px; margin-top: 20px;">
+          <label for="manual-key-input" style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; text-align: left; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Already have a license key? Link it manually:</label>
+          <div style="display: flex; gap: 8px; width: 100%;">
+            <input type="text" id="manual-key-input" placeholder="Stripe License Key (cs_test_...)" style="flex: 1; background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 13px; outline: none; transition: border-color 0.2s;">
+            <button id="link-key-btn" class="btn-copy" style="padding: 10px 16px; border-radius: 8px; white-space: nowrap; height: 38px; line-height: 1;" onclick="linkLicenseKey()">Link Key</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="licensed-action" style="display: none;">
+        <div class="key-box">
+          <span id="key-display" class="key-value">cs_test_xxxxxxxx</span>
+          <button id="copy-btn" class="btn-copy" onclick="copyKey()">Copy</button>
+        </div>
+        <div style="margin-top: 16px;">
+          <button id="reset-device-btn" class="btn-logout" style="border-color: #3b82f6; color: #3b82f6; width: 100%; padding: 10px; margin: 0;" onclick="handleResetDevice()">Reset Device Lock</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="activation-steps">
+      <h2 class="activation-title">App Activation Steps</h2>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-text">Open the <strong>LIDORBIT app</strong> on your computer.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-text">Use the <strong>license key</strong> from this dashboard to activate the app.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-text">Input your <strong>account credentials</strong> inside the app to bind your hardware.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="store-links">
+      <a href="https://www.microsoft.com/store" target="_blank" rel="noopener">Microsoft Store</a>
+      <a href="https://apps.apple.com" target="_blank" rel="noopener">Mac App Store</a>
+      <a href="#privacy-policy">Privacy Policy</a>
+    </div>
+    <div class="copyright">
+      © 2026 <span class="brand">LidOrbit</span> by ZeroKool Technologies. All rights reserved. · Contact: fahdzk@gmail.com
+    </div>
+  </div>
+</footer>
+
+  <script>
+    const API_BASE = window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')
+      ? ''
+      : 'https://lidorbit-api.wasmer.app';
+
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Authenticate user from localStorage
+      const userStr = localStorage.getItem('user');
+      if (!userStr) {
+        window.location.href = '/login.html';
+        return;
+      }
+
+      currentUser = JSON.parse(userStr);
+      document.getElementById('user-display').textContent = currentUser.username;
+
+      // Header dynamic session update
+      const loginText = document.getElementById('nav-login-text');
+      const loginLink = document.getElementById('nav-login-btn');
+      if (loginText && loginLink) {
+        loginText.textContent = currentUser.username;
+        loginLink.href = '/dashboard.html';
+      }
+
+      // 2. Fetch latest user details (license status)
+      try {
+        const response = await fetch(`${API_BASE}/api/web/user-details?username=${encodeURIComponent(currentUser.username)}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch account info');
+        }
+
+        const data = await response.json();
+        const badge = document.getElementById('status-badge');
+        const headline = document.getElementById('status-headline');
+        const desc = document.getElementById('status-desc');
+        const unlicensedAction = document.getElementById('unlicensed-action');
+        const licensedAction = document.getElementById('licensed-action');
+        const keyDisplay = document.getElementById('key-display');
+
+        if (data.user && data.user.licenseKey) {
+          // Licensed view
+          badge.textContent = 'Licensed';
+          badge.className = 'status-badge licensed';
+          headline.textContent = 'License Key Active';
+          desc.textContent = 'Use this key to authorize your device in the desktop app.';
+          keyDisplay.textContent = data.user.licenseKey;
+          
+          unlicensedAction.style.display = 'none';
+          licensedAction.style.display = 'block';
+        } else {
+          // Unlicensed view
+          badge.textContent = 'Unlicensed';
+          badge.className = 'status-badge unlicensed';
+          headline.textContent = 'Lifetime Access Pending';
+          desc.textContent = 'Purchase a lifetime license to run LidOrbit without limits.';
+          
+          unlicensedAction.style.display = 'block';
+          licensedAction.style.display = 'none';
+        }
+      } catch (err) {
+        console.error(err);
+        const errBox = document.getElementById('error-box');
+        errBox.textContent = 'Failed to load live license details. Showing cached info.';
+        errBox.style.display = 'block';
+      }
+    });
+
+    async function handlePurchase() {
+      if (!currentUser) return;
+
+      const unlicensedAction = document.getElementById('unlicensed-action');
+      const originalContent = unlicensedAction.innerHTML;
+      unlicensedAction.innerHTML = '<span style="color: var(--text-secondary);">Redirecting to Stripe...</span>';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/web/create-checkout-session`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: currentUser.username })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Failed to create checkout session');
+        }
+      } catch (err) {
+        console.error(err);
+        const errBox = document.getElementById('error-box');
+        errBox.textContent = err.message || 'An error occurred during Stripe checkout setup.';
+        errBox.style.display = 'block';
+        unlicensedAction.innerHTML = originalContent;
+      }
+    }
+
+    function copyKey() {
+      const keyText = document.getElementById('key-display').textContent;
+      const copyBtn = document.getElementById('copy-btn');
+      
+      navigator.clipboard.writeText(keyText).then(() => {
+        copyBtn.textContent = 'Copied!';
+        copyBtn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+        
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy';
+          copyBtn.style.background = 'var(--accent-gradient)';
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy key: ', err);
+      });
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('user');
+      window.location.href = '/login.html';
+    }
+
+    async function handleResetDevice() {
+      if (!currentUser) return;
+
+      const resetBtn = document.getElementById('reset-device-btn');
+      const originalText = resetBtn.textContent;
+      resetBtn.disabled = true;
+      resetBtn.textContent = 'Resetting...';
+
+      if (!confirm('Are you sure you want to reset your device lock? This will log you out from your previous device.')) {
+        resetBtn.disabled = false;
+        resetBtn.textContent = originalText;
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/api/web/reset-device`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: currentUser.username })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          alert('Device lock reset successfully! You can now activate LIDORBIT on your new device.');
+          location.reload();
+        } else {
+          throw new Error(data.message || 'Failed to reset device lock');
+        }
+      } catch (err) {
+        console.error(err);
+        const errBox = document.getElementById('error-box');
+        errBox.textContent = err.message || 'An error occurred while resetting the device lock.';
+        errBox.style.display = 'block';
+        resetBtn.disabled = false;
+        resetBtn.textContent = originalText;
+      }
+    }
+
+    async function linkLicenseKey() {
+      if (!currentUser) return;
+
+      const keyInput = document.getElementById('manual-key-input');
+      const linkBtn = document.getElementById('link-key-btn');
+      const licenseKey = keyInput.value.trim();
+
+      if (!licenseKey) {
+        alert('Please enter a license key.');
+        return;
+      }
+
+      const originalText = linkBtn.textContent;
+      linkBtn.disabled = true;
+      linkBtn.textContent = 'Linking...';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/web/link-license`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: currentUser.username,
+            licenseKey: licenseKey
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          alert('License key linked successfully!');
+          location.reload();
+        } else {
+          throw new Error(data.message || 'Failed to link license key');
+        }
+      } catch (err) {
+        console.error(err);
+        const errBox = document.getElementById('error-box');
+        errBox.textContent = err.message || 'An error occurred while linking the license key.';
+        errBox.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } finally {
+        linkBtn.disabled = false;
+        linkBtn.textContent = originalText;
+      }
+    }
+  </script>
+  <script src="js/matrix.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+
+# Electron builder outputs and build cache (both root and subdirectories)
+dist/
+dist-electron/
+.electron-builder-snapshots/
+release/
+build/
+installer/extraResources/
+
+# Local configuration files and environment secrets
+.env
+.env*.local
+*.local
+LidOrbitAPIKEY.txt
+
+# Local databases and runtime state
+licensing-server/users-db.json
+emergency_checkpoint.json
+emergency_trigger.json
+
+# Operating System specific files
+.DS_Store
+Thumbs.db

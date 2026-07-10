@@ -1,0 +1,323 @@
+:root {
+  --black-deep: #0B0B0F;
+  --purple-deep: #2E1A47;
+  --purple-bright: #8B5CF6;
+  --purple-glow: #B794F6;
+  --cyan-accent: #00E5FF;
+  --text-main: #E8E6F0;
+  --text-dim: #9D97B5;
+  --red-hover: #FF4D4D;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+html, body {
+  width: 380px;
+  height: 380px;
+  background: transparent;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+}
+
+/* Perfect Circular Container */
+.orb-container {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at center, var(--purple-deep) 0%, var(--black-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: drag;
+}
+
+/* Background canvas matrix rain */
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 380px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+  border-radius: 50%;
+}
+
+/* Window Control Buttons */
+.window-controls {
+  position: absolute;
+  top: 36px;
+  right: 56px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  -webkit-app-region: no-drag;
+}
+
+.control-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.20s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.control-btn svg {
+  pointer-events: none;
+}
+
+#btn-close:hover {
+  background: var(--red-hover);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+}
+
+#btn-minimize:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--cyan-accent);
+}
+
+/* Safe Center Content Overlay */
+.ui-content {
+  position: relative;
+  z-index: 5;
+  width: 270px;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  pointer-events: auto;
+}
+
+/* Brand Wordmark */
+.brand-header {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.brand-lid {
+  color: var(--text-main);
+}
+
+.brand-orbit {
+  color: var(--purple-glow);
+  text-shadow: 0 0 10px rgba(183, 148, 246, 0.45);
+}
+
+/* Progress Ring Layout */
+.progress-container {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring-svg {
+  width: 130px;
+  height: 130px;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.04);
+  stroke-width: 10px;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: var(--purple-bright);
+  stroke-width: 10px;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.25s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.4s ease;
+}
+
+.ring-label-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.percentage-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.35);
+}
+
+.status-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--cyan-accent);
+  letter-spacing: 0.08em;
+  margin-top: 3px;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.25);
+}
+
+/* File Log */
+.file-log-container {
+  width: 100%;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-log-text {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* EULA Section */
+.eula-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.eula-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.eula-checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--text-dim);
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.20s ease;
+  background: transparent;
+}
+
+.eula-checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+  border-color: var(--purple-bright);
+  background: rgba(139, 92, 246, 0.25);
+}
+
+.eula-checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: "";
+  position: absolute;
+  left: 4.5px;
+  top: 1px;
+  width: 3.5px;
+  height: 7px;
+  border: solid var(--cyan-accent);
+  border-width: 0 1.8px 1.8px 0;
+  transform: rotate(45deg);
+}
+
+.eula-link {
+  color: var(--purple-glow);
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.eula-link:hover {
+  color: var(--cyan-accent);
+}
+
+/* Action Button */
+.btn-primary {
+  width: 180px;
+  height: 34px;
+  border-radius: 17px;
+  border: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: var(--purple-bright);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+  cursor: pointer;
+  transition: all 0.20s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-app-region: no-drag;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--purple-glow);
+  box-shadow: 0 0 18px rgba(183, 148, 246, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Footer URLs */
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  -webkit-app-region: no-drag;
+}
+
+.footer-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--cyan-accent);
+}
+
+.bullet {
+  color: rgba(255, 255, 255, 0.12);
+}

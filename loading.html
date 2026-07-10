@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LIDORBIT Loading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      /* Allow dragging of the splash window */
+      -webkit-app-region: drag;
+    }
+    
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    
+    /* Crop container to show only the orbit, hiding L I D O R B I T text */
+    .logo-wrapper {
+      width: 260px;
+      height: 108px;
+      overflow: hidden;
+      position: relative;
+      /* Premium brand purple glow behind the logo */
+      filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.4));
+    }
+    
+    .logo-image {
+      width: 260px;
+      height: 142px; /* Scale maintaining exact 677:369 aspect ratio */
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    
+    .percentage-container {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      -webkit-app-region: no-drag;
+    }
+    
+    .percentage-text {
+      font-size: 26px;
+      font-weight: 700;
+      color: #7c3aed; /* Brand purple */
+      text-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
+      letter-spacing: 1px;
+      transition: all 0.05s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-container">
+    <div class="logo-wrapper">
+      <img src="assets/lidorbit_logo.png" class="logo-image" alt="LIDORBIT Logo">
+    </div>
+    <div class="percentage-container">
+      <div class="percentage-text" id="percentage">0%</div>
+    </div>
+  </div>
+
+  <script>
+    // Since we configure contextIsolation and preload, we access ipc through window.api
+    let currentPercent = 0;
+    const percentageEl = document.getElementById('percentage');
+    
+    // Smooth, premium loading progress simulation
+    const interval = setInterval(() => {
+      // Step increment ranges to simulate network/app loads dynamically
+      const increment = Math.floor(Math.random() * 4) + 2;
+      currentPercent += increment;
+      
+      if (currentPercent >= 100) {
+        currentPercent = 100;
+        clearInterval(interval);
+        percentageEl.innerText = "100%";
+        // Notify the main process that loader animation is fully done
+        setTimeout(() => {
+          if (window.api && typeof window.api.finishLoading === 'function') {
+            window.api.finishLoading();
+          } else {
+            // Fallback for contextIsolation-free environments
+            try {
+              const { ipcRenderer } = require('electron');
+              ipcRenderer.send('loading-finished');
+            } catch (e) {
+              console.error("Failed to notify main process", e);
+            }
+          }
+        }, 150);
+      } else {
+        percentageEl.innerText = currentPercent + "%";
+      }
+    }, 45);
+  </script>
+</body>
+</html>
