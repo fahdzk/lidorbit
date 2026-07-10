@@ -91,7 +91,6 @@ LIDORBIT is equipped with a flexible licensing and trial system:
   - **`Trial`** button: Directs users to the Microsoft Store details page to buy the paid app version.
   - **`🛒 Purchase`** button: Directs users to the Lidorbit website to buy a license key.
 * **Direct License Keys**: Direct download builds require entering a key. Connects to the licensing server API (`/api/verify`) for validation.
-* **Developer Admit Key**: The key `LIDORBIT27111979XXx` is hardcoded as an offline developer key. Entering this key bypasses remote checks and instantly activates the widget.
 * **Dynamic Cart Icon**: An action row cart icon (`🛒`) is displayed on both the main view and activation overlay **only when the app is unlicensed**, directing users to purchase options. It hides automatically once activated.
 
 ### 6. Licenses & Data Protection Link

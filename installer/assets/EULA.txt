@@ -67,17 +67,13 @@ IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING ALL IMPLIED WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
 
 --------------------------------------------------------------------------------
-5. TRIALS, LICENSING, & DEVELOPMENT KEY
+5. TRIALS & LICENSING
 --------------------------------------------------------------------------------
   - Microsoft Store Trial: Microsoft Store builds include an integrated 
     7-day free trial. If the Software is not upgraded upon trial expiration, 
     the core keep-awake toggles will be locked.
   - Licensing: Direct-download builds require a valid license key verified via 
     remote API services.
-  - Admin Override Key: A master developer/administrator key 
-    ("LIDORBIT27111979XXx") is compiled directly into the Software for offline 
-    testing, validation, and debugging. Unauthorized distribution of this key 
-    outside of internal testing teams is strictly prohibited.
 
 --------------------------------------------------------------------------------
 6. PRIVACY POLICY & DATA HANDLING
