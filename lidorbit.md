@@ -36,6 +36,14 @@ This document stores the complete development history, configuration, and archit
    * **Licensing Server API**: Hosted at `https://lidorbit-api.wasmer.app` (Wasmer App ID: `da_RxJIdtAUEdrW`).
    * Both applications were successfully built remotely and deployed via Wasmer CLI (`wasmer app deploy --build-remote`).
 
+6. **SEO Optimization & Content Pages**:
+   * Created three highly optimized, mobile-friendly SEO pages:
+     * `/vs-amphetamine` ([vs-amphetamine.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/vs-amphetamine.html)) - Sid-by-side comparison with Amphetamine.
+     * `/keep-mac-awake-lid-closed-ai-agents` ([keep-mac-awake-lid-closed-ai-agents.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/keep-mac-awake-lid-closed-ai-agents.html)) - Comprehensive clamshell keep-awake instructions.
+     * `/best-keep-awake-app-2026` ([best-keep-awake-app-2026.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/best-keep-awake-app-2026.html)) - Top 5 keep-awake apps comparison and roundup.
+   * Wrote JSON-LD Schema (FAQ and Article markup) for Google crawl bots.
+   * Integrated internal link network connecting all pages, footers, and homepages.
+
 ---
 
 ## 🛠 Technology Stack & Component Architecture
@@ -60,14 +68,22 @@ graph TD
 
 ### 2. Website Frontend
 * **Folder**: [website/public/](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public)
-* **Index**: [index.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/index.html) - Displays the matrix rain canvas background, product features, and redirects users to checkout or direct download links.
+* **Index**: [index.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/index.html) - Main landing page.
+* **SEO Pages**:
+  * [vs-amphetamine.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/vs-amphetamine.html) - Comparison guide.
+  * [keep-mac-awake-lid-closed-ai-agents.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/keep-mac-awake-lid-closed-ai-agents.html) - How-to guide.
+  * [best-keep-awake-app-2026.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/public/best-keep-awake-app-2026.html) - Roundup.
 * **Wasmer App Config**: [website/app.yaml](file:///c:/Users/fahdz/Desktop/KEEPITUP/website/app.yaml)
 
 ### 3. Licensing Server Backend
 * **Folder**: [licensing-server/](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server)
-* **Server**: [server.js](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/server.js) - Express routes, user signup, device lock, and password reset endpoints.
-* **Database**: [database.js](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/database.js) - PostgreSQL pool connections and query mappings.
-* **Emails**: [emailService.js](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/emailService.js) - Brevo API integrations.
+* **Server**: [server.js](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/server.js) - Express routes.
+* **Database**: [database.js](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/database.js) - PostgreSQL pool connections.
+* **Emails**: [emailService.js](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/emailService.js) - Brevo SMTP calls.
+* **SEO Pages**:
+  * [vs-amphetamine.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/public/vs-amphetamine.html) - Comparison guide.
+  * [keep-mac-awake-lid-closed-ai-agents.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/public/keep-mac-awake-lid-closed-ai-agents.html) - How-to guide.
+  * [best-keep-awake-app-2026.html](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/public/best-keep-awake-app-2026.html) - Roundup.
 * **Wasmer App Config**: [licensing-server/app.yaml](file:///c:/Users/fahdz/Desktop/KEEPITUP/licensing-server/app.yaml)
 
 ---
